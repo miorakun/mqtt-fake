@@ -50,3 +50,9 @@ void sendSig(String sig) {
     // serial printing the signals on mqtt
   }
 }
+
+void sigPuls(int duration){
+    digitalWrite(SEND_PIN, HIGH);
+    delayMicroseconds(duration);
+    degitalWrite(SEND_PIN,LOW);
+}
