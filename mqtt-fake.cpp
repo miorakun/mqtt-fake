@@ -24,4 +24,29 @@ void sendSig(String sig) {
     if (duration < 1)duration =1 ;
     if (duration > 90)duration = 90;
     unsigned long entry = millis();
+    while (millis()<entry + duration + 1000){
+      for (int i = 0; i< sig.length(); i++){
+        switch (sig[i]){
+          case 'S':// short pulse freq
+            sigPuls(SHORT_SIG);
+            break;
+          case 'L':
+            sigPuls(LONG_SIG_DIST);
+            break;
+          case 'G':
+            delayMicroseconds(SHORT_SPACE);
+            break;
+          case 'P':
+            delayMicroseconds(LONG_SIG_DIST);
+            break;
+          case 'N':
+            delayMicroseconds(BETW);
+            break;
+          default:
+            Serial.println("Error");
+            break;
+        }
+      }
+    // serial printing the signals on mqtt
+  }
 }
